@@ -1,22 +1,32 @@
 # Desafio Técnico - API de Integração de Pedidos
 
-Esta é uma API desenvolvida em **Node.js** para realizar o processamento e mapeamento (Data Mapping) de pedidos de venda, integrando os dados com um banco de dados **MongoDB Atlas**.
+Esta é uma API desenvolvida em **Node.js** para realizar o processamento e mapeamento (**Data Mapping**) de pedidos de venda, integrando os dados com um banco de dados **MongoDB Atlas**.
+
+O projeto foca em transformar estruturas de dados em português para um padrão internacional em inglês antes do armazenamento.
 
 ## 🚀 Tecnologias Utilizadas
-* **Node.js** e **Express** (Backend)
-* **MongoDB Atlas** (Banco de Dados NoSQL)
-* **Mongoose** (Modelagem de dados)
-* **Dotenv** (Segurança de variáveis de ambiente)
+* **Node.js** e **Express** (Framework Web)
+* **MongoDB Atlas** (Banco de Dados NoSQL na nuvem)
+* **Mongoose** (ODM para modelagem de dados)
+* **Dotenv** (Gerenciamento de variáveis de ambiente e segurança)
 
 ## 🛠️ Funcionalidades
-- **POST /order**: Recebe o pedido em português, realiza o mapeamento dos campos para inglês e salva no banco.
-- **GET /order/:id**: Busca um pedido específico pelo ID.
+- **POST `/order`**: Recebe o pedido com campos em português, realiza o mapeamento para inglês e salva no MongoDB.
+- **GET `/order/:id`**: Busca um pedido específico pelo `numeroPedido` (orderId).
 
-## 📋 Como Rodar o Projeto
-1. Clone o repositório.
-2. Execute `npm install` para instalar as dependências.
-3. Crie um arquivo `.env` na raiz e adicione sua `MONGO_URI`.
-4. Inicie o servidor com `node server.js`.
+### 📝 Exemplo de Mapeamento (Data Mapping)
 
----
-Desenvolvido por **Gabriel Cavalcanti**
+**Entrada (Payload enviado via Postman/Thunder Client):**
+```json
+{
+  "numeroPedido": "v10089015vdb-01",
+  "valorTotal": 10000,
+  "dataCriacao": "2023-07-19T12:24:11.529Z",
+  "items": [
+    {
+      "idItem": "2434",
+      "quantidadeItem": 1,
+      "valorItem": 1000
+    }
+  ]
+}
